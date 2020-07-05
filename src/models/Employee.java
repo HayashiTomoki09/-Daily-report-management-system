@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(name="getAllEmployees",
-                query="SELECT e FROM Emplpyee AS e ORDER BY e.id DESC"
+                query="SELECT e FROM Employee AS e ORDER BY e.id DESC"
                 ),
     @NamedQuery(name="getEmployeesCount",
                 query="SELECT COUNT (e) FROM Employee AS e"

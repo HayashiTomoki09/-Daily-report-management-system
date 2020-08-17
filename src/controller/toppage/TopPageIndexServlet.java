@@ -15,24 +15,14 @@ import models.Employee;
 import models.Report;
 import utils.DBUtil;
 
-/**
- * Servlet implementation class TopPageIndexServlet
- */
 @WebServlet("/index.html")
 public class TopPageIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public TopPageIndexServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
@@ -54,11 +44,29 @@ public class TopPageIndexServlet extends HttpServlet {
                                      .setParameter("employee", login_employee)
                                      .getSingleResult();
 
+
+        Long[] reactions = new Long [(int)reports_count];
+
+        int i = 0;
+        for(Report r : reports){
+
+            long reactions_Count = em.createNamedQuery("getReactionsCount", Long.class)
+                    .setParameter("report_id" ,r)
+                    .getSingleResult();
+
+            reactions[i] = reactions_Count;
+            i++;
+        }
+
+
+
         em.close();
 
         request.setAttribute("reports", reports);
         request.setAttribute("reports_count", reports_count);
+        request.setAttribute("reactions", reactions);
         request.setAttribute("page", page);
+
 
         if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));

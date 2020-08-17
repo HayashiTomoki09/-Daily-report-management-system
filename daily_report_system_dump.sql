@@ -1,0 +1,88 @@
+-- MySQL dump 10.13  Distrib 5.7.30, for macos10.14 (x86_64)
+--
+-- Host: localhost    Database: daily_report_system
+-- ------------------------------------------------------
+-- Server version	5.7.30
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `employees`
+--
+
+DROP TABLE IF EXISTS `employees`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `employees` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_flag` int(11) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `deleted` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_3um79qgwg340lpaw7phtwudtc` (`code`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employees`
+--
+
+LOCK TABLES `employees` WRITE;
+/*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (1,0,'1000','2020-07-05 21:12:10',0,'安藤','7CA50B7987D8BDB1E19EEF2359B0A9948151DF206636B013F2692B1F684C3136','2020-07-05 21:12:10'),(2,0,'1001','2020-07-05 21:12:42',0,'伊藤','B25A38F61DCE0C2D40CBE004B46EC03576F805418638A791259C9B42B85EB8FB','2020-07-05 21:12:42'),(3,0,'1002','2020-07-06 07:28:17',0,'有藤','D0EF870D75D3C0F4C20429771F1B1C23BCD6A1D0387892890EA775EB7050AB5B','2020-07-06 07:34:05'),(4,0,'1003','2020-07-06 07:46:49',0,'江藤','1BAB310BE0D68F38BA3BF31CDD52C25ED534C8FDBF88C24BDC1A5B7B34B52521','2020-07-06 07:46:49'),(5,0,'1004','2020-07-06 07:47:17',0,'尾藤','9907715708149EB152585C51FF56C8FE045EAF0A3B6E866460E87AA4C698A43C','2020-07-06 07:47:29'),(6,0,'1005','2020-07-06 07:51:30',1,'尾藤','9907715708149EB152585C51FF56C8FE045EAF0A3B6E866460E87AA4C698A43C','2020-07-06 07:51:46'),(7,1,'1009','2020-07-06 18:51:01',0,'林','0D04307F981673B134FE119B187C43CC4F870163FA2046B09FB16739D7345291','2020-07-06 18:51:01');
+/*!40000 ALTER TABLE `employees` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reports`
+--
+
+DROP TABLE IF EXISTS `reports`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reports` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` longtext NOT NULL,
+  `created_at` datetime NOT NULL,
+  `report_date` date NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK7m58c0h3phjcm6bco7aqikfen` (`employee_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reports`
+--
+
+LOCK TABLES `reports` WRITE;
+/*!40000 ALTER TABLE `reports` DISABLE KEYS */;
+INSERT INTO `reports` VALUES (1,'トイレ、玄関の掃除を行いました','2020-07-06 13:15:40','2020-07-06','7月6日の日報','2020-07-06 14:01:39',1),(2,'トイレ掃除、オフィスの掃除','2020-07-09 22:02:54','2020-07-09','7月9日の日報','2020-07-09 22:05:14',1),(3,'Aプロジェクト\r\n','2020-07-10 07:43:00','2020-07-10','7月10日の日報','2020-07-12 11:24:42',7);
+/*!40000 ALTER TABLE `reports` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-07-17 22:17:17

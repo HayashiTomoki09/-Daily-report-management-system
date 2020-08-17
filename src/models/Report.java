@@ -18,22 +18,46 @@ import javax.persistence.Table;
 
 @Table(name = "reports")
 @NamedQueries({
-    @NamedQuery(
+    @NamedQuery(//全レポートを取得
             name = "getAllReports",
             query = "SELECT r FROM Report AS r ORDER BY r.id DESC"
             ),
-    @NamedQuery(
+    @NamedQuery(//全レポート数を取得
             name = "getReportsCount",
             query = "SELECT COUNT(r) FROM Report AS r"
             ),
-    @NamedQuery(
+    @NamedQuery(//ログイン社員の全レポートを取得
             name = "getMyAllReports",
             query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"
             ),
-    @NamedQuery(
+    @NamedQuery(//ログイン社員の全レポート数を取得
             name = "getMyReportsCount",
             query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee"
-            )
+            ),
+    @NamedQuery(//社員名検索のレポート取得
+            name = "getFindReportsName",
+            query = "SELECT r FROM Report AS r WHERE r.employee.name LIKE :name ORDER BY r.id DESC"
+            ),
+    @NamedQuery(//社員名検索のレポート数取得
+            name = "getFindReportsNameCount",
+            query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee.name LIKE :name"
+            ),
+    @NamedQuery(//タイトル検索のレポート取得
+            name = "getFindReportsTitle",
+            query = "SELECT r FROM Report AS r WHERE r.title LIKE :name ORDER BY r.title DESC"
+            ),
+    @NamedQuery(//タイトル検索のレポート数取得
+            name = "getFindReportsTitleCount",
+            query = "SELECT COUNT(r) FROM Report AS r WHERE r.title LIKE :name"
+            ),
+    @NamedQuery(//ログイン社員のフォロー社員のみのレポート取得
+            name = "getFindReportsFollow",
+            query = "SELECT r FROM Report AS r , Follow AS f WHERE r.employee = f.followed_id AND f.follower_id = :logid"
+            ),
+    @NamedQuery(//ログイン社員のフォロー社員のみのレポート数取得
+            name = "getFindReportsFollowCount",
+            query = "SELECT COUNT(r) FROM Report AS r , Follow AS f WHERE r.employee = f.followed_id AND f.follower_id = :logid"
+            ),
 })
 @Entity
 public class Report {
@@ -58,6 +82,9 @@ public class Report {
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
+
+    @Column(name = "updated_at", nullable = false)
+    private Timestamp updated_at;
 
     public Integer getId() {
         return id;
@@ -115,6 +142,4 @@ public class Report {
         this.updated_at = updated_at;
     }
 
-    @Column(name = "updated_at", nullable = false)
-    private Timestamp updated_at;
 }

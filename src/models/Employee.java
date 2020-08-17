@@ -12,20 +12,21 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 @Entity
 @NamedQueries({
-    @NamedQuery(name="getAllEmployees",
-                query="SELECT e FROM Employee AS e ORDER BY e.id DESC"
-                ),
-    @NamedQuery(name="getEmployeesCount",
-                query="SELECT COUNT (e) FROM Employee AS e"
-                ),
-    @NamedQuery(
-            name = "checkRegisteredCode",
-            query = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :code"
-            ),
-    @NamedQuery(
-            name = "checkLoginCodeAndPassword",
-            query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :pass"
-            )
+    @NamedQuery(//全社員の情報を取得
+                name="getAllEmployees",
+                query="SELECT e FROM Employee AS e ORDER BY e.id DESC"),
+    @NamedQuery(//全社員数を取得
+            name="getAllEmployeesCount",
+            query="SELECT count(e) FROM Employee AS e ORDER BY e.id DESC"),
+    @NamedQuery(//削除済みでない社員の情報を取得
+            name="getEmployeesDelete0",
+            query="SELECT e FROM Employee AS e WHERE e.delete_flag = 0 ORDER BY e.id DESC"),
+    @NamedQuery(//入力された社員コードの社員数を取得
+                name = "checkRegisteredCode",
+                query = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :code"),
+    @NamedQuery(//削除済みではなく社員コードとパスワードが一致している社員の情報を取得
+                name = "checkLoginCodeAndPassword",
+                query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :pass"),
 })
 @Table(name="employees")
 public class Employee {

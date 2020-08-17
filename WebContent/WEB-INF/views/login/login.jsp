@@ -25,5 +25,8 @@
             <input type="hidden" name="_token" value="${_token}" />
             <button type="submit">ログイン</button>
         </form>
+            <br />
+            <a href="#" onclick="js_alert()">スペシャルパス</a>
+
     </c:param>
 </c:import>

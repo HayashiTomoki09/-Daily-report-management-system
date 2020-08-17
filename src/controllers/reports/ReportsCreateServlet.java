@@ -80,5 +80,4 @@ public class ReportsCreateServlet extends HttpServlet {
             }
         }
     }
-
 }

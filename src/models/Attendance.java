@@ -23,6 +23,12 @@ import javax.persistence.Table;
     @NamedQuery(//出退社情報の取得
             name="Attendance",
             query="SELECT a FROM Attendance AS a WHERE a.employee_id = :employee AND a.attendance_date = :report_date"),
+    @NamedQuery(//レポート投稿者が登校日に出退社入力をしているか確認
+            name="reportAttendancesCheck",
+            query="SELECT Count(a) FROM Attendance AS a WHERE a.employee_id = :report_employee AND a.attendance_date = :report_date"),
+    @NamedQuery(//レポート投稿者の投稿日の出退社情報を取得
+        name="reportAttendance",
+        query="SELECT a FROM Attendance AS a WHERE a.employee_id = :report_employee AND a.attendance_date = :report_date"),
     })
 @Entity
 public class Attendance {

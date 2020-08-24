@@ -3,7 +3,6 @@ package controllers.reports;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -105,11 +104,11 @@ public class ReportsShowServlet extends HttpServlet {
                 request.setAttribute("LoginReaction", LoginReaction);
             }
 
-            Date date = new Date();
+
             //出退勤登録の有無確認
-            long AttendancesCheck = em.createNamedQuery("today'sAttendancesCheck", Long.class)
-                                      .setParameter("report_date" ,date)
-                                      .setParameter("employee" ,login_employee)
+            long AttendancesCheck = em.createNamedQuery("reportAttendancesCheck", Long.class)
+                                      .setParameter("report_date" ,r.getReport_date())
+                                      .setParameter("report_employee" ,r.getEmployee())
                                       .getSingleResult();
 
 
@@ -117,9 +116,9 @@ public class ReportsShowServlet extends HttpServlet {
             Attendance attendance = null;
             //出退勤情報取得
             if (AttendancesCheck != 0){
-                attendance = em.createNamedQuery("Attendance", Attendance.class)
-                               .setParameter("report_date" ,date)
-                               .setParameter("employee" ,login_employee)
+                attendance = em.createNamedQuery("reportAttendance", Attendance.class)
+                               .setParameter("report_date" ,r.getReport_date())
+                               .setParameter("report_employee" ,r.getEmployee())
                                .getSingleResult();
             }
 

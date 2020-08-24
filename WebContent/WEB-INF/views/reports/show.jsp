@@ -48,7 +48,10 @@
                         <tr>
                             <th>出退社時間</th>
                             <td>
-                                <fmt:formatDate value='${Attendance.cometime}' pattern='HH:mm' />　〜　<fmt:formatDate value='${Attendance.leavetime}' pattern='HH:mm' />
+                                <c:if test="${stayHour != null or stayMinute != null}">
+                                    <fmt:formatDate value='${Attendance.cometime}' pattern='HH:mm' />　〜　<fmt:formatDate value='${Attendance.leavetime}' pattern='HH:mm' />
+                                </c:if>
+
                             </td>
                         </tr>
                         <tr>

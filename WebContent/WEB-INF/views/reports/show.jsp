@@ -45,6 +45,20 @@
                                         👍🏿&nbsp;<c:out value="${TypeCount4}" />&nbsp;&nbsp;&nbsp;
                                 </td>
                         </tr>
+                        <tr>
+                            <th>出退社時間</th>
+                            <td>
+                                <fmt:formatDate value='${Attendance.cometime}' pattern='HH:mm' />　〜　<fmt:formatDate value='${Attendance.leavetime}' pattern='HH:mm' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>在社時間</th>
+                            <td>
+                                <c:if test="${stayHour != null or stayMinute != null}">
+                                    ${stayHour}　時間　　${stayMinute}　分
+                                </c:if>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <c:choose>

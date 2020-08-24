@@ -10,6 +10,7 @@
                     <option value="${findItemNum}">
                         <c:choose>
                             <c:when test="${findItemNum == 0}">社員名</c:when>
+                            <c:when test="${findItemNum == 4}">日付</c:when>
                             <c:when test="${findItemNum == 1}">タイトル</c:when>
                             <c:when test="${findItemNum == 2}">全日報表示</c:when>
                             <c:when test="${findItemNum == 3}">フォロー中</c:when>
@@ -18,6 +19,7 @@
                     </option>
                 </c:if>
                     <option value="0"<c:if test="${findItemNum == 0}"> selected</c:if>>社員名</option>
+                    <option value="4"<c:if test="${findItemNum == 4}"> selected</c:if>>日付</option>
                     <option value="1"<c:if test="${findItemNum == 1}"> selected</c:if>>タイトル</option>
                     <option value="2"<c:if test="${findItemNum == 2}"> selected</c:if>>全日報表示</option>
                     <option value="3"<c:if test="${findItemNum == 3}"> selected</c:if>>フォロー中</option>
@@ -25,5 +27,7 @@
             <button type="submit">検索</button>
             <div class="clear_both"></div>
             ※全日報表示とフォロー中は文字検索は無効
+            <br />
+            ※日付け検索は「◯◯◯◯-◯◯-◯◯」と入力<br />　　　　　　　（例 「2020-01-01」)
         </form>
     </div>

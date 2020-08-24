@@ -9,6 +9,8 @@
             </div>
         </c:if>
         <h2>日報管理システムへようこそ</h2>
+
+        <c:import url="../Attendance/Attendance_form.jsp" />
         <h3>【自分の日報　一覧】</h3>
         <table id="report_list">
             <tbody>

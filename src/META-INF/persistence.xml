@@ -6,8 +6,9 @@
         <class>models.Report</class>
         <class>models.Reaction</class>
         <class>models.Follow</class>
+        <class>models.Attendance</class>
         <properties>
-            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            <property name="javax.persistence.schema-generation.database.action" value="create"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.show_sql	" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

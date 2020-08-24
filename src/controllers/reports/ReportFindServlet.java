@@ -1,6 +1,7 @@
 package controllers.reports;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -100,6 +101,19 @@ public class ReportFindServlet extends HttpServlet {
 
             findItem = "";
             break;
+
+        case 4://日付け
+
+            Date findItemDate = Date.valueOf(findItem);
+            reports = em.createNamedQuery("getFindReportsDate", Report.class)
+                        .setParameter("date",findItemDate)
+                        .setFirstResult(15 * (page - 1))
+                        .setMaxResults(15)
+                        .getResultList();
+
+            reports_count = em.createNamedQuery("getFindReportsDateCount", Long.class)
+                              .setParameter("date",findItemDate)
+                              .getSingleResult();
         }
 
 

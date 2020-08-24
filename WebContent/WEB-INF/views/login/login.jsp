@@ -26,7 +26,11 @@
             <button type="submit">ログイン</button>
         </form>
             <br />
-            <a href="#" onclick="js_alert()">スペシャルパス</a>
+            <a href="#" onclick="js_alert()">スペシャルパス（ログインIDとパスワード）</a>
+            <br />
+            <a href="https://github.com/HayashiTomoki09/-Daily-report-management-system.git">Github URL</a>
+            <br />
+            <a href="https://d.kuku.lu/60a79210bf">変更に伴う画面設計</a>
 
     </c:param>
 </c:import>

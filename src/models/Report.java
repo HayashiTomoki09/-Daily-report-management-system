@@ -58,6 +58,14 @@ import javax.persistence.Table;
             name = "getFindReportsFollowCount",
             query = "SELECT COUNT(r) FROM Report AS r , Follow AS f WHERE r.employee = f.followed_id AND f.follower_id = :logid"
             ),
+    @NamedQuery(//日付け検索のレポート取得
+            name = "getFindReportsDate",
+            query = "SELECT r FROM Report AS r WHERE r.report_date LIKE :date ORDER BY r.id DESC"
+            ),
+    @NamedQuery(//日付け検索のレポート数取得
+            name = "getFindReportsDateCount",
+            query = "SELECT COUNT(r) FROM Report AS r WHERE r.report_date LIKE :date"
+            ),
 })
 @Entity
 public class Report {
